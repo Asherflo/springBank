@@ -24,9 +24,10 @@ public class AccountCreationRequest {
     private String email;
     private Gender gender;
     private String address;
-    private int age;
+    private String age;
     private AccountType accountType;
     private String occupation;
+    private String phoneNumber;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)

@@ -9,10 +9,7 @@ import com.semicolon.springBank.model.enums.AccountType;
 import com.semicolon.springBank.model.enums.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 
@@ -21,39 +18,31 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
-@Validated
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private  Long id;
-    @NotNull
-    @NotBlank
+
     private String firstName;
 
-    @NotNull
-    @NotBlank
-    private String LastName;
+
+    private String lastName;
     private String Password;
 
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
-    @NotNull
-    @NotBlank
-    private int age;
-    @NotNull
-    @NotBlank
+
+    private String age;
+
     private String phoneNumber;
 
     @Email
-    @NotNull
-    @NotBlank
     @Column(unique = true)
     private String email;
 
     private String occupation;
 
-    @NotNull
-    @NotBlank
+
     private String address;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -68,8 +57,22 @@ public class Customer {
     @Enumerated(value = EnumType.STRING)
     private AccountType accountType;
 
+    private String accountNumber;
+    private String pin;
+
+
+    public Customer(String firstName, String lastName, String email, String address, Gender gender, String age, String occupation, AccountType accountType,String phoneNumber) {
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.email =email;
+        this.accountType=accountType;
+        this.age=age;
+        this.address = address;
+        this.gender= gender;
+        this.occupation= occupation;
+        this.phoneNumber= phoneNumber;
 
 
 
-
+    }
 }
