@@ -41,22 +41,18 @@ public class Customer {
     private String email;
 
     private String occupation;
-
-
     private String address;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
-
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateJoined;
     @Enumerated(value = EnumType.STRING)
     private AccountType accountType;
-
     private String accountNumber;
     private String pin;
 
