@@ -12,22 +12,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountCreationRequest {
+public class CustomerCreationRequest {
+
     private String firstName;
     private String lastName;
     private String email;
-    private Gender gender;
-    private String address;
+    private BigDecimal initialDeposit;
     private String age;
     private AccountType accountType;
-    private String occupation;
-    private String phoneNumber;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)

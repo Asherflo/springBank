@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Account {
@@ -21,16 +21,15 @@ public class Account {
     private AccountType accountType;
     private String accountName;
     private String accountNumber;
-    @Email
-    private  String email;
+
     private BigDecimal accountBalance;
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
 
 
+    public Account() {
 
-
-
-
+    }
 }

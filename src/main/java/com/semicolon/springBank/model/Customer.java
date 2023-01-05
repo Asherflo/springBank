@@ -12,9 +12,11 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Setter
 @Getter
 @Entity
@@ -51,24 +53,35 @@ public class Customer {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateJoined;
-    @Enumerated(value = EnumType.STRING)
-    private AccountType accountType;
-    private String accountNumber;
-    private String pin;
-
+    @OneToMany
+    @JoinColumn(name = "account_id")
+    private List<Account> account = new ArrayList<>();
+//    @Enumerated(value = EnumType.STRING)
+//    private AccountType accountType;
+//    private String accountNumber;
+//    private String pin;
+//
 
     public Customer(String firstName, String lastName, String email, String address, Gender gender, String age, String occupation, AccountType accountType,String phoneNumber) {
         this.firstName=firstName;
         this.lastName = lastName;
         this.email =email;
-        this.accountType=accountType;
+//        this.accountType=accountType;
         this.age=age;
         this.address = address;
-        this.gender= gender;
-        this.occupation= occupation;
+         this.occupation= occupation;
         this.phoneNumber= phoneNumber;
 
 
 
+
+    }
+
+
+
+    public Customer() {
+    }
+
+    public void setAccountNumber() {
     }
 }

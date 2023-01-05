@@ -1,7 +1,8 @@
 package com.semicolon.springBank.service;
 
 import com.semicolon.springBank.dtos.CustomerDto;
-import com.semicolon.springBank.requests.AccountCreationRequest;
+import com.semicolon.springBank.model.enums.AccountType;
+import com.semicolon.springBank.requests.CustomerCreationRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,16 @@ class CustomerServiceTest {
     @Test
     @DisplayName("A customer can be created")
     void  testThatACustomerCanBeCreated(){
-        AccountCreationRequest accountCreationRequest = new AccountCreationRequest();
-        accountCreationRequest.setFirstName("Emmanuel");
-        accountCreationRequest.setLastName("Olayinka");
-        accountCreationRequest.setAddress("32,ogudu street.yaba");
-        accountCreationRequest.setAge("32");
-        accountCreationRequest.setEmail("olayinka.e@yahoo.com");
-        accountCreationRequest.setGender(MALE);
-        accountCreationRequest.setOccupation("Software Engineer");
-        accountCreationRequest.setPhoneNumber("09131106322");
-        CustomerDto customerDto = customerService.createCustomer(accountCreationRequest);
+        CustomerCreationRequest customerCreationRequest = new CustomerCreationRequest();
+        customerCreationRequest.setFirstName("Emmanuel");
+        customerCreationRequest.setLastName("Olayinka");
+        customerCreationRequest.setAddress("32,ogudu street.yaba");
+        customerCreationRequest.setAge("32");
+        customerCreationRequest.setEmail("olayinka.e@yahoo.com");
+        customerCreationRequest.setGender(MALE);
+        customerCreationRequest.setOccupation("Software Engineer");
+        customerCreationRequest.setPhoneNumber("09131106322");
+        CustomerDto customerDto = customerService.createCustomer(customerCreationRequest);
         assertNotNull(customerDto);
     }
     @Test

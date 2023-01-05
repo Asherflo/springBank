@@ -1,7 +1,7 @@
 package com.semicolon.springBank.controller;
 
 import com.semicolon.springBank.dtos.CustomerDto;
-import com.semicolon.springBank.requests.AccountCreationRequest;
+import com.semicolon.springBank.requests.CustomerCreationRequest;
 import com.semicolon.springBank.response.ApiResponse;
 import com.semicolon.springBank.response.CustomerResponseDto;
 import com.semicolon.springBank.service.CustomerService;
@@ -18,8 +18,8 @@ public class CustomerController {
         this.customerService = customerService;
     }
     @PostMapping("/createCustomer")
-    public ResponseEntity<?>createCustomer(@RequestBody AccountCreationRequest accountCreationRequest){
-        CustomerDto customerDto = customerService.createCustomer(accountCreationRequest);
+    public ResponseEntity<?>createCustomer(@RequestBody CustomerCreationRequest customerCreationRequest){
+        CustomerDto customerDto = customerService.createCustomer(customerCreationRequest);
         ApiResponse apiResponse = ApiResponse.builder()
                 .status("success")
                 .message("Customer successfully created")

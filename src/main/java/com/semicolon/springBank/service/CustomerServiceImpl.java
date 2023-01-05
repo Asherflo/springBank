@@ -1,17 +1,18 @@
 package com.semicolon.springBank.service;
 
 import com.semicolon.springBank.dtos.CustomerDto;
+import com.semicolon.springBank.model.Account;
 import com.semicolon.springBank.model.Customer;
 import com.semicolon.springBank.repository.CustomerRepository;
-import com.semicolon.springBank.requests.AccountCreationRequest;
+import com.semicolon.springBank.requests.CustomerCreationRequest;
 import com.semicolon.springBank.response.CustomerResponseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerServiceImpl  implements  CustomerService{
@@ -24,16 +25,27 @@ public class CustomerServiceImpl  implements  CustomerService{
     }
 
     @Override
-    public CustomerDto createCustomer(AccountCreationRequest accountCreationRequest) {
-        Customer customer = new Customer(accountCreationRequest.getFirstName(),
-                accountCreationRequest.getLastName(), accountCreationRequest.getEmail(),
-                accountCreationRequest.getAddress(), accountCreationRequest.getGender(), accountCreationRequest.getAge(),
-                accountCreationRequest.getOccupation(),
-                accountCreationRequest.getAccountType(),
-                accountCreationRequest.getPhoneNumber());
+    public CustomerDto createCustomer(CustomerCreationRequest customerCreationRequest) {
+        Account account = new Account();
+        account.setAccountBalance(customerCreationRequest.getInitialDeposit());
+        account.setAccountType(customerCreationRequest.getAccountType());
+        account.setAccountName(customerCreationRequest.getFirstName()+ " "+ customerCreationRequest.getLastName());
+        account.setAccountNumber(generateAccountNumber());
+        Customer customer = new Customer();
+        customer.setLastName(customerCreationRequest.getLastName());
+         customer.setEmail(customerCreationRequest.getEmail());
+         customer.setAccountNumber();
         customer.setDateJoined(LocalDate.now());
         Customer savedCustomer = customerRepository.save(customer);
         return modelMapper.map(savedCustomer,CustomerDto.class);
+    }
+
+    private String generateAccountNumber() {
+        String accountNumber = UUID.randomUUID().toString();
+        if(customerRepository.existsByAccount_AccountNumber(accountNumber)){
+            generateAccountNumber();
+        }
+        return accountNumber;
     }
 
 

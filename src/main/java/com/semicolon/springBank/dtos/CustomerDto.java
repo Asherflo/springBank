@@ -23,11 +23,11 @@ public class CustomerDto {
     private String firstName;
     private String lastName;
     private String email;
-    private Gender gender;
-    private String address;
+//    private Gender gender;
+//    private String address;
     private int age;
     private AccountType accountType;
-    private String occupation;
+//    private String occupation;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -38,6 +38,8 @@ public class CustomerDto {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateJoined;
+    private String accountNumber;
+
 
 
 
